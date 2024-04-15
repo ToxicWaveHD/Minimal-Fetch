@@ -28,7 +28,9 @@ python
 ```
 
 ## Todo
-1. Add more distro logos (please do commit any you make)
-2. Make a custom information grabber (rather than have the neofetch dependency 💀)
-3. Add more customization options
-4. Maybe upload it to AUR if I decide to finish it.
+1. Add more distro logos
+3. Make a custom information grabber (rather than have the neofetch dependency 💀)
+4. Add more customization options
+5. Maybe upload it to AUR if I decide to finish it.
+
+# Any improvements features or new logos would be welcome
