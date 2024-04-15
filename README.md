@@ -9,7 +9,7 @@ Please report any issues you find I would love to improve this script
 $ git clone https://github.com/ToxicWaveHD/Minimal-Fetch.git
 $ cd Minimal-Fetch/
 $ chmod +x make
-./make
+$ ./make
 ```
 
 ## Simply run with
