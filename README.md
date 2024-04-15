@@ -6,7 +6,7 @@ Minimal fetch is a more ascetically pleasing system fetching tool!
 
 
 STILL A WIP DO NOT EXPECT IT TO BE FLAWLESS
-Please report any issues you find I would love to improve this script
+Please do report any issues you find
 
 ## Install with
 ```
