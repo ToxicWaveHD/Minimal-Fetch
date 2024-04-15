@@ -35,6 +35,8 @@ The os logo has to be a directory in /usr/share/mfetch/logos
 ```
 neofetch
 python
+python3-pillow
+python3-psutil
 ```
 
 ## Todo
