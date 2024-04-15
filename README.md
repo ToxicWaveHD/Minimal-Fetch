@@ -22,4 +22,4 @@ python
 1. Add more distro logos (please do commit any you make)
 2. Make my own information grabber (rather than have the neofetch dependency 💀)
 3. Add more customization options
-4. Upload to AUR if
+4. Maybe upload to AUR if i decide to finish it.
