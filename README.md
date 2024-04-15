@@ -1,5 +1,9 @@
 # Minimal-Fetch
-Minimal fetch is a more ascetically pleasing neofetch
+Minimal fetch is a more ascetically pleasing system fetching tool!
+
+## What it actually looks like
+<img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev.png" align="center" width="600px"/>
+
 
 STILL A WIP DO NOT EXPECT IT TO BE FLAWLESS
 Please report any issues you find I would love to improve this script
