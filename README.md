@@ -33,4 +33,4 @@ python
 4. Add more customization options
 5. Maybe upload it to AUR if I decide to finish it.
 
-# Any improvements features or new logos would be welcome
+Any improvements, features or new logos would be very welcome :)
