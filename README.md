@@ -1,12 +1,11 @@
 # Minimal-Fetch
-Minimal fetch is a more ascetically pleasing system fetching tool!
+Minimal fetch is a more aesthetically pleasing system fetching tool!
 
 ## What it actually looks like
 <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev.png" align="center" width="600px"/>
 
 
-STILL A WIP DO NOT EXPECT IT TO BE FLAWLESS
-Please do report any issues you find
+STILL A WIP DO NOT EXPECT IT TO BE FLAWLESS  (Please do report any issues you find)
 
 ## Install with
 ```
@@ -15,29 +14,27 @@ $ cd Minimal-Fetch/
 $ chmod +x make
 $ ./make
 ```
-
-## Simply run with
+And simply run with
 ```
 $ mfetch
 ```
+Note: this requires the dependencies: `neofetch`, `python3`, `pillow` and `psutil`
+
+You can install the dependencies with
+
+For Ubuntu-based: ```$ sudo apt install neofetch python3 python3-pillow python3-psutil```
+
+For Arch-based: ```$ sudo pacman -S neofetch python3 python-pillow python-psutil```
+
 
 ## Config howto
-WARNING FAIL SAFES HAVE YET TO BE ADDED IF YOU ENCOUNTER ANY ERRORS WHILE RUNNING AFTER EDITING THE CONFIG REVERT ANY CHANGES MADE
-```
-The config is located at ~/.config/mfetch/options
+WARNING FAIL-SAFES HAVE YET TO BE ADDED IF YOU ENCOUNTER ANY ERRORS WHILE RUNNING AFTER EDITING THE CONFIG REVERT ANY CHANGES MADE
+
+The config is located at ```~/.config/mfetch/options```
 
 True/False statements MUST be capitalised
 
-The os logo has to be a directory in /usr/share/mfetch/logos
-```
-
-## Dependencys
-```
-neofetch
-python
-python3-pillow
-python3-psutil
-```
+The os logo has to be a directory in ```/usr/share/mfetch/logos```
 
 ## Todo
 1. Add more distro logos
