@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo rm -rf /usr/share/mfetch/
+sudo rm -rf ~/.config/mfetch/
+sudo rm -rf ~/.cache/mfetch/
+sudo rm -rf /usr/bin/mfetch/
