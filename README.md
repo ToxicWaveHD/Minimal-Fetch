@@ -22,7 +22,7 @@ Note: this requires the dependencies: `neofetch`, `python3`, `pillow` and `psuti
 
 You can install the dependencies with
 
-For Ubuntu-based: ```$ sudo apt install neofetch python3 python3-pillow python3-psutil```
+For Ubuntu/Debian-based: ```$ sudo apt install neofetch python3 python3-pillow python3-psutil```
 
 For Arch-based: ```$ sudo pacman -S neofetch python3 python-pillow python-psutil```
 
