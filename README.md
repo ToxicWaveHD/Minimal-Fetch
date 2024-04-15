@@ -21,6 +21,16 @@ $ ./make
 $ mfetch
 ```
 
+## Config howto
+WARNING FAIL SAFES HAVE YET TO BE ADDED IF YOU ENCOUNTER ANY ERRORS WHILE RUNNING AFTER EDITING THE CONFIG REVERT ANY CHANGES MADE
+```
+The config is located at ~/.config/mfetch/options
+
+True/False statements MUST be capitalised
+
+The os logo has to be a directory in /usr/share/mfetch/logos
+```
+
 ## Dependencys
 ```
 neofetch
