@@ -37,9 +37,8 @@ True/False statements MUST be capitalised
 The os logo has to be a directory in ```/usr/share/mfetch/logos```
 
 ## Todo
-1. Add more distro logos
-3. Make a custom information grabber (rather than have the neofetch dependency 💀)
-4. Add more customization options
-5. Maybe upload it to AUR if I decide to finish it.
+1. Make a custom information grabber (rather than have the neofetch dependency 💀)
+2. Add more customization options
+3. Maybe upload it to AUR if I decide to finish it.
 
 Any improvements, features or new logos would be very welcome :)
