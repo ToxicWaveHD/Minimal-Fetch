@@ -1,27 +1,35 @@
 # Minimal-Fetch Version 1.0 BETA
 
-Minimal fetch is a more aesthetically pleasing system fetching tool writen in python!
+Minimal fetch is a more aesthetically pleasing system fetching tool written in python!
 Its still heavily in beta but its at a stage where I'm ready to share.
 
 ## What it actually looks like
-<img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev.png" align="center" width="600px"/>
-      <summary>More logos: </summary>
-      
-      <img src="https://github.com/ToxicWaveHD/MyWallpapers/blob/main/Best/anna-kovalova-OEyw-6ZDR-U-unsplash.jpg" align="center" width="600px"/>
-      <br></br>
+<img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-04-30_21-08.png" align="center" width="600px"/>
+ 
+<details>
+  <summary>More logos: </summary>
 
-      <img src="https://github.com/ToxicWaveHD/MyWallpapers/blob/main/Best/bg3.jpg" align="center" width="600px"/>
-      <br></br>
+  <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-04-30_21-08_1.png" align="center" width="600px"/>
+  <br></br>
 
-      <img src="https://github.com/ToxicWaveHD/MyWallpapers/blob/main/Best/pexels-satoshi-hirayama-4058530.jpg" align="center" width="600px"/>
-      <br></br>
+  <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-04-30_21-09.png" align="center" width="600px"/>
+  <br></br>
 
-      <img src="https://github.com/ToxicWaveHD/MyWallpapers/blob/main/Best/qp642v47scyb1.jpg" align="center" width="600px"/>
-      <br></br>
+  <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-04-30_21-10.png" align="center" width="600px"/>
+  <br></br>
 
-      <img src="https://github.com/ToxicWaveHD/MyWallpapers/blob/main/Best/someleaves.jpg" align="center" width="600px"/>
-      <br></br>
+  <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-04-30_21-10_1.png" align="center" width="600px"/>
+  <br></br>
 
+  <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-04-30_21-10_2.png" align="center" width="600px"/>
+  <br></br>
+
+  <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-04-30_21-11.png" align="center" width="600px"/>
+  <br></br>
+
+  <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-04-30_21-11_1.png" align="center" width="600px"/>
+  <br></br>
+</details>
 
 STILL A WIP DO NOT EXPECT IT TO BE FLAWLESS  (Please do report any issues you find)
 
