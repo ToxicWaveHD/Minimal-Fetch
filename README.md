@@ -5,6 +5,22 @@ Its still heavily in beta but its at a stage where I'm ready to share.
 
 ## What it actually looks like
 <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev.png" align="center" width="600px"/>
+      <summary>More logos: </summary>
+      
+      <img src="https://github.com/ToxicWaveHD/MyWallpapers/blob/main/Best/anna-kovalova-OEyw-6ZDR-U-unsplash.jpg" align="center" width="600px"/>
+      <br></br>
+
+      <img src="https://github.com/ToxicWaveHD/MyWallpapers/blob/main/Best/bg3.jpg" align="center" width="600px"/>
+      <br></br>
+
+      <img src="https://github.com/ToxicWaveHD/MyWallpapers/blob/main/Best/pexels-satoshi-hirayama-4058530.jpg" align="center" width="600px"/>
+      <br></br>
+
+      <img src="https://github.com/ToxicWaveHD/MyWallpapers/blob/main/Best/qp642v47scyb1.jpg" align="center" width="600px"/>
+      <br></br>
+
+      <img src="https://github.com/ToxicWaveHD/MyWallpapers/blob/main/Best/someleaves.jpg" align="center" width="600px"/>
+      <br></br>
 
 
 STILL A WIP DO NOT EXPECT IT TO BE FLAWLESS  (Please do report any issues you find)
