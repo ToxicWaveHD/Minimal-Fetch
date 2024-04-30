@@ -1,6 +1,7 @@
 # Minimal-Fetch Version 1.0 BETA
 
-Minimal fetch is a more aesthetically pleasing system fetching tool!
+Minimal fetch is a more aesthetically pleasing system fetching tool writen in python!
+Its still heavily in beta but its at a stage where I'm ready to share.
 
 ## What it actually looks like
 <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev.png" align="center" width="600px"/>
