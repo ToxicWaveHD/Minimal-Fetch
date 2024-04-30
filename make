@@ -1,11 +1,16 @@
 #!/bin/bash
-sudo chmod +x /usr/bin/mfetch
-
 sudo mkdir /usr/share/mfetch
+sudo mkdir /usr/share/mfetch/colour/
+sudo mkdir /usr/share/mfetch/logos/
 mkdir ~/.config/mfetch/
 mkdir ~/.cache/mfetch/
 
-sudo cp usr-bin/* /usr/bin/
-sudo cp -r usr-share-mfetch/* /usr/share/mfetch
-cp home-config-mfetch/* ~/.config/mfetch/
-cp -r home-cache/* ~/.cache/mfetch/
+sudo cp mfetch /usr/bin/mfetch
+sudo chmod +x /usr/bin/mfetch
+
+sudo cp -r colour/* /usr/share/mfetch/colour/
+sudo cp -r logos/* /usr/share/mfetch/logos/
+sudo cp cimage.py /usr/share/mfetch/
+sudo cp neofetch.py /usr/share/mfetch/
+
+cp options ~/.config/mfetch/
