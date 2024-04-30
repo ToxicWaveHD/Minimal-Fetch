@@ -1,6 +1,5 @@
-# BIG UPDATES COMING SOON!
+# Minimal-Fetch Version 1.0
 
-# Minimal-Fetch
 Minimal fetch is a more aesthetically pleasing system fetching tool!
 
 ## What it actually looks like
