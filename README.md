@@ -1,4 +1,4 @@
-# Minimal-Fetch Version 1.0
+# Minimal-Fetch Version 1.0 BETA
 
 Minimal fetch is a more aesthetically pleasing system fetching tool!
 
