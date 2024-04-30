@@ -1,6 +1,0 @@
-split_symbol :
-logo_padding 6
-text_spacer_size 3
-logo_big False
-hide_ip False
-os_logo archlinux
