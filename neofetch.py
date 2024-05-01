@@ -107,7 +107,7 @@ for i in logo.split("\n"):
         if line[on] == "Colours":
             g = colours
         else:
-            g = (f"\\e[1m\\e[3{col}m{str(line[on])}\\e[0m{split_symb}{(" " * (leng + colon_padding))}{str(system_info[line[on]])}")
+            g = ("\\e[1m\\e[3"+col+"m"+str(line[on])+"\\e[0m"+split_symb+(" " * (leng + colon_padding))+str(system_info[line[on]]))
     except:
         g = " "
     on += 1
