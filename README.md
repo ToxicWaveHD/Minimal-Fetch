@@ -62,9 +62,14 @@ True/False statements MUST be capitalised
 
 The os logo has to be a directory in ```/usr/share/mfetch/logos```
 
-## Todo
-1. Make a custom information grabber (rather than have the neofetch dependency 💀)
-2. Add more customization options
-3. Maybe upload it to AUR if I decide to finish it.
+## Planned for version 1.1
+Although version 1.0 has only recently been released 1.1 has already been planned and is just around the corner
+The 1.1 beta should include:
+
+1. Significantly faster loading times.
+2. A custom info grabber
+3. Removed Neofetch dependency
+4. A few more logos including but probably not limited to Voidlinux, ZorinOS, Opensuse and LinuxMint
+5. Neater and more modular code
 
 Any improvements, features or new logos would be very welcome :)
