@@ -72,4 +72,7 @@ The 1.1 beta should include:
 4. A few more logos including but probably not limited to Voidlinux, ZorinOS, Opensuse and LinuxMint
 5. Neater and more modular code
 
+6. Fix script breaking without GPU
+7. Fix dat recall from unknow distros
+
 Any improvements, features or new logos would be very welcome :)
