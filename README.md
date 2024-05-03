@@ -1,5 +1,7 @@
 # Minimal-Fetch Version 1.0 BETA
 
+# UPDATE 2.0 COMING VERY SOON
+
 Minimal fetch is a more aesthetically pleasing system fetching tool written in Python!
 It is still heavily in beta but it is at a stage where I'm ready to share.
 
