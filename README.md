@@ -68,12 +68,12 @@ Although version 1.0 has only recently been released 1.1 has already been planne
 The 1.1 beta should include:
 
 1. Significantly faster loading times. **DONE and pending**
-2. A custom info grabber **DONE and pending**
-3. Removed Neofetch and Psutil dependency **DONE and pending**
-4. A few more logos including but probably not limited to Voidlinux, ZorinOS, Opensuse and LinuxMint
+2. Make a custom info grabber **DONE and pending**
+3. Remove Neofetch and Psutil dependency **DONE and pending**
+4. Add Voidlinux and Opensuse logos **DONE and pending**
 5. Neater and more modular code **DONE and pending**
 
 6. Fix script breaking without GPU **DONE and pending**
-7. Fix "dat" recall from unknown distros
+7. Fix "dat" recall from unknown distros **DONE and pending**
 
 Any improvements, features or new logos would be very welcome :)
