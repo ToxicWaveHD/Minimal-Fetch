@@ -66,13 +66,13 @@ The os logo has to be a directory in ```/usr/share/mfetch/logos```
 Although version 1.0 has only recently been released 1.1 has already been planned and is just around the corner
 The 1.1 beta should include:
 
-1. Significantly faster loading times.
-2. A custom info grabber
-3. Removed Neofetch dependency
+1. Significantly faster loading times. **DONE and pending**
+2. A custom info grabber **DONE and pending**
+3. Removed Neofetch dependency **DONE and pending**
 4. A few more logos including but probably not limited to Voidlinux, ZorinOS, Opensuse and LinuxMint
-5. Neater and more modular code
+5. Neater and more modular code **DONE and pending**
 
-6. Fix script breaking without GPU
+6. Fix script breaking without GPU **DONE and pending**
 7. Fix dat recall from unknow distros
 
 Any improvements, features or new logos would be very welcome :)
