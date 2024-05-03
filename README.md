@@ -63,13 +63,13 @@ True/False statements MUST be capitalised
 The os logo has to be a directory in ```/usr/share/mfetch/logos```
 
 ## Planned for version 2.0
-**Yes that's right 1.1 BETA is moving to 2.0 because I felt the update was packed full of the necessary features before final release**
+**Yes that's right 1.1 BETA is moving to 2.0 because I felt the update was packed full of the necessary features before the final release**
 Although version 1.0 has only recently been released 1.1 has already been planned and is just around the corner
 The 1.1 beta should include:
 
 1. Significantly faster loading times. **DONE and pending**
 2. A custom info grabber **DONE and pending**
-3. Removed Neofetch dependency **DONE and pending**
+3. Removed Neofetch and Psutil dependency **DONE and pending**
 4. A few more logos including but probably not limited to Voidlinux, ZorinOS, Opensuse and LinuxMint
 5. Neater and more modular code **DONE and pending**
 
