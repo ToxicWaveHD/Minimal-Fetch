@@ -62,7 +62,8 @@ True/False statements MUST be capitalised
 
 The os logo has to be a directory in ```/usr/share/mfetch/logos```
 
-## Planned for version 1.1
+## Planned for version 2.0
+**Yes that's right 1.1 BETA is moving to 2.0 because I felt the update was packed full of the necessary features before final release**
 Although version 1.0 has only recently been released 1.1 has already been planned and is just around the corner
 The 1.1 beta should include:
 
@@ -73,6 +74,6 @@ The 1.1 beta should include:
 5. Neater and more modular code **DONE and pending**
 
 6. Fix script breaking without GPU **DONE and pending**
-7. Fix dat recall from unknow distros
+7. Fix "dat" recall from unknown distros
 
 Any improvements, features or new logos would be very welcome :)
