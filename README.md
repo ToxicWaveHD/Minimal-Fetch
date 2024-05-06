@@ -1,9 +1,6 @@
-# Minimal-Fetch Version 1.0 BETA
-
-# UPDATE 2.0 COMING VERY SOON
+# Minimal-Fetch Version 2.0 BETA
 
 Minimal fetch is a more aesthetically pleasing system fetching tool written in Python!
-It is still heavily in beta but it is at a stage where I'm ready to share.
 
 ## What it actually looks like
 <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-04-30_21-08.png" align="center" width="600px"/>
@@ -46,13 +43,13 @@ And simply run with
 ```
 $ mfetch
 ```
-Note: this requires the dependencies: `neofetch`, `python3`, `pillow` and `psutil`
+Note: this requires the dependencies: `python3`, `pillow` and `wmctrl`
 
 You can install the dependencies with
 
-For Ubuntu/Debian-based: ```$ sudo apt install neofetch python3 python3-pillow python3-psutil```
+For Ubuntu/Debian-based: ```$ sudo apt install python3 python3-pillow wmctrl```
 
-For Arch-based: ```$ sudo pacman -S neofetch python3 python-pillow python-psutil```
+For Arch-based: ```$ sudo pacman -S python3 python-pillow wmctrl```
 
 
 ## Config howto
@@ -63,19 +60,5 @@ The config is located at ```~/.config/mfetch/options```
 True/False statements MUST be capitalised
 
 The os logo has to be a directory in ```/usr/share/mfetch/logos```
-
-## Planned for version 2.0
-**Yes that's right 1.1 BETA is moving to 2.0 because I felt the update was packed full of the necessary features before the final release**
-Although version 1.0 has only recently been released 1.1 has already been planned and is just around the corner
-The 1.1 beta should include:
-
-1. Significantly faster loading times. **DONE and pending**
-2. Make a custom info grabber **DONE and pending**
-3. Remove Neofetch and Psutil dependency **DONE and pending**
-4. Add Voidlinux and Opensuse logos **DONE and pending**
-5. Neater and more modular code **DONE and pending**
-
-6. Fix script breaking without GPU **DONE and pending**
-7. Fix "dat" recall from unknown distros **DONE and pending**
 
 Any improvements, features or new logos would be very welcome :)
