@@ -10,7 +10,9 @@ sudo chmod +x /usr/bin/mfetch
 
 sudo cp -r colour/* /usr/share/mfetch/colour/
 sudo cp -r logos/* /usr/share/mfetch/logos/
+
 sudo cp cimage.py /usr/share/mfetch/
 sudo cp neofetch.py /usr/share/mfetch/
+sudo cp get_info.py /usr/share/mfetch/
 
 cp options ~/.config/mfetch/
