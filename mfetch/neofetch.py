@@ -3,11 +3,14 @@ import os
 from mfetch.get_info import get_info
 from mfetch.cimage import cimage
 import click
+from mfetch.get_info import run_command
+
 
 
 @click.command()
 def main():
     # Your neofetch.py code here
+    path = run_command("pip show mfetch | grep Location").split(": ")[1]
 
     sysinfo = get_info()
 
@@ -17,7 +20,7 @@ def main():
             open(str(expanduser("~")) + "/.config/mfetch/options").read().split("\n")
         )
     except:
-        pref_ = open(str("mfetch/options")).read().split("\n")
+        pref_ = open(str(path + "mfetch/options")).read().split("\n")
 
     for pref_itm in pref_:
         try:
@@ -49,24 +52,24 @@ def main():
         logof = "logo-big"
     else:
         logof = "logo"
-    passfile = "mfetch/logos/" + oslogo + "/" + logof
+    passfile = path + "/mfetch/logos/" + oslogo + "/" + logof
     try:
         open(str(passfile + ".png"))
     except:
-        passfile = "mfetch/logos/linux/" + logof
+        passfile = path + "/mfetch/logos/linux/" + logof
     cimage(passfile)
 
     logo = str(open(str(expanduser("~")) + "/.cache/mfetch/currentlogo").read())
-    colours = str(open("mfetch/colour/colours").read().replace("\n", ""))
+    colours = str(open(path + "/mfetch/colour/colours").read().replace("\n", ""))
 
     ##
 
     dat = {}
 
     try:
-        dat_ = open("mfetch/logos/" + oslogo + "/dat").read().split("\n")
+        dat_ = open(path + "/mfetch/logos/" + oslogo + "/dat").read().split("\n")
     except:
-        dat_ = open("mfetch/logos/linux/dat").read().split("\n")
+        dat_ = open(path + "/mfetch/logos/linux/dat").read().split("\n")
 
     for pref_itm in dat_:
         try:
