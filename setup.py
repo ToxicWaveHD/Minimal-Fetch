@@ -24,7 +24,5 @@ setup(
     cmdclass={
         "install": PostInstallCommand,
     },
-    package_data={  
-        "" : ["logos/*/*","options","colour/*"]
-    } 
+    package_data={"": ["logos/*/*", "options", "colour/*"]},
 )

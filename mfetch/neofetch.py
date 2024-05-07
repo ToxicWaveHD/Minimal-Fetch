@@ -6,7 +6,6 @@ import click
 from mfetch.get_info import run_command
 
 
-
 @click.command()
 def main():
     # Your neofetch.py code here
