@@ -34,10 +34,7 @@ STILL A WIP DO NOT EXPECT IT TO BE FLAWLESS  (Please do report any issues you fi
 
 ## Install with
 ```
-$ git clone https://github.com/ToxicWaveHD/Minimal-Fetch.git
-$ cd Minimal-Fetch/
-$ chmod +x make
-$ ./make
+$ sudo pip install git+https://github.com/ToxicWaveHD/Minimal-fetch
 ```
 And simply run with
 ```
