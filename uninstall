@@ -1,6 +1,0 @@
-#!/bin/bash
-sudo rm -rf /usr/share/mfetch
-rm -rf ~/.config/mfetch/
-rm -rf ~/.cache/mfetch/
-
-
