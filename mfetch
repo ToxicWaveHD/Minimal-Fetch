@@ -1,7 +1,0 @@
-#!/bin/bash
-
-current_dir=$(pwd)
-project_dir=/usr/share/mfetch/
-cd $project_dir
-python3 neofetch.py
-cd $current_dir

@@ -1,4 +1,4 @@
-from os.path import expanduser
+import os
 from PIL import Image
 
 ech = 'echo -e "'
@@ -29,7 +29,9 @@ def save(inputt):
     """
     Saves input to a file.
     """
-    filee = str(expanduser("~")) + "/.cache/mfetch/currentlogo"
+    directory = os.path.expanduser("~/.cache/mfetch/")
+    os.makedirs(directory, exist_ok=True)  # Create directory if it doesn't exist
+    filee = os.path.join(directory, "currentlogo")
     with open(filee, "w") as fp:
         fp.write(str(inputt))
 
