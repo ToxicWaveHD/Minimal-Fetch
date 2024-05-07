@@ -19,7 +19,7 @@ def main():
             open(str(expanduser("~")) + "/.config/mfetch/options").read().split("\n")
         )
     except:
-        pref_ = open(str(path + "mfetch/options")).read().split("\n")
+        pref_ = open(str(path + "/mfetch/options")).read().split("\n")
 
     for pref_itm in pref_:
         try:
