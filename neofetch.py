@@ -53,10 +53,10 @@ colours = str(open("colour/colours").read().replace("\n", ""))
 dat = {}
 
 try:
-  dat_ = open("logos/" + oslogo + "/dat").read().split("\n")
+    dat_ = open("logos/" + oslogo + "/dat").read().split("\n")
 except:
-  dat_ = open("logos/linux/dat").read().split("\n")
-  
+    dat_ = open("logos/linux/dat").read().split("\n")
+
 
 for pref_itm in dat_:
     try:
@@ -70,43 +70,54 @@ terminator = "\\e[0m"
 bold = "\\e[1m"
 
 
-split = (":" + " "*colon_padding)
+split = ":" + " " * colon_padding
 
 
 def render_info(title, item):
-  title = str(title)
-  item = str(item)
-  
-  out = [  bold,  logo_col,  title,  terminator,  split_symb,  str(" "*colon_padding),  (" "*(maximum_title_size - len(title))),  item  ]
-  
-  return str("".join(out)) 
+    title = str(title)
+    item = str(item)
+
+    out = [
+        bold,
+        logo_col,
+        title,
+        terminator,
+        split_symb,
+        str(" " * colon_padding),
+        (" " * (maximum_title_size - len(title))),
+        item,
+    ]
+
+    return str("".join(out))
 
 
 maximum_title_size = 6
 line = [
-        "",
-        render_info("OS", sysinfo["os"]),
-        render_info("WM", sysinfo["wm"]),
-        "",
-        render_info("Kernel", sysinfo["kernel"]),
-        render_info("Pkgs", sysinfo["packages"]),
-        "",
-        render_info("CPU", sysinfo["cpu"]),
-        render_info("GPU", sysinfo["gpu"]),
-        render_info("Memory", sysinfo["memory"]),
-        "",
-        colours
-        ]
+    "",
+    render_info("OS", sysinfo["os"]),
+    render_info("WM", sysinfo["wm"]),
+    "",
+    render_info("Kernel", sysinfo["kernel"]),
+    render_info("Pkgs", sysinfo["packages"]),
+    "",
+    render_info("CPU", sysinfo["cpu"]),
+    render_info("GPU", sysinfo["gpu"]),
+    render_info("Memory", sysinfo["memory"]),
+    "",
+    colours,
+]
 
 out = []
 on = 0
 out.append("")
 for i in logo.split("\n"):
 
-    try: g = line[on]
-    except: g = ""
+    try:
+        g = line[on]
+    except:
+        g = ""
     # ^ This alowes spacing between elements also alowes the output to be shorter in length than the logo
-    
+
     on += 1
     out.append(str(i) + " " * logo_padding + str(g))
 
