@@ -1,86 +1,9 @@
-import os
 from os.path import expanduser
 from PIL import Image
-import __main__
-
-output = []
-
-file = __main__.passfile
-
-img = Image.open(file + ".png")
-width, height = img.size
-
-
-def save(inputt):
-    filee = str(expanduser("~")) + "/.cache/mfetch/currentlogo"
-    fp = open(filee, "w")
-    fp.write(str(inputt))
-    fp.close()
-
-
-def colconv(col):
-    r, g, b, a = col
-    r = int((r / 255) + 0.5) != 0
-    g = int((g / 255) + 0.5) != 0
-    b = int((b / 255) + 0.5) != 0
-    a = int((a / 255) + 0.5) != 0
-
-    if a:
-        if r & g & b:
-            return "7"
-
-        if g & b:
-            return "6"
-
-        if r & b:
-            return "5"
-
-        if r & g:
-            return "3"
-
-        if r:
-            return "1"
-
-        if g:
-            return "2"
-
-        if b:
-            return "4"
-
-        else:
-            return "0"
-    else:
-        return " "
-
-
-image = ""
-
-for y in range(height):
-    for x in range(width):
-        image = image + str(colconv(img.getpixel((x, y))))
-    image = image + str("\n")
-
-ylength = 0
-for line in image.split("\n"):
-    if len(line) > ylength:
-        ylength = len(line)
-
-imagemod = []
-for line in image.split("\n"):
-    imagemod.append(line + str(" " * (ylength - len(line))))
-image = "\n".join(imagemod)
-
-if not len(image.split("\n")) / 2 == int(len(image.split("\n")) / 2):
-    wdth = len(image.split("\n")[0])
-    image = image + ("\n" + (" " * wdth))
-img = image.split("\n")
-ylen = len(img)
-
 
 ech = 'echo -e "'
 end = '\\e[0m"'
 nul = "\\e[0m"
-
 
 cols = [
     "\\e[30m",
@@ -102,11 +25,57 @@ cols = [
 ]
 
 
+def save(inputt):
+    """
+    Saves input to a file.
+    """
+    filee = str(expanduser("~")) + "/.cache/mfetch/currentlogo"
+    with open(filee, "w") as fp:
+        fp.write(str(inputt))
+
+
+def colconv(col):
+    """
+    Converts RGBA color to ANSI color code.
+    """
+    r, g, b, a = col
+    r = int((r / 255) + 0.5) != 0
+    g = int((g / 255) + 0.5) != 0
+    b = int((b / 255) + 0.5) != 0
+    a = int((a / 255) + 0.5) != 0
+
+    if a:
+        if r & g & b:
+            return "7"
+        if g & b:
+            return "6"
+        if r & b:
+            return "5"
+        if r & g:
+            return "3"
+        if r:
+            return "1"
+        if g:
+            return "2"
+        if b:
+            return "4"
+        else:
+            return "0"
+    else:
+        return " "
+
+
 def col(col, mod):
+    """
+    Returns ANSI color escape sequences.
+    """
     return cols[col * 2 + mod]
 
 
 def blockrender(val0, val1):
+    """
+    Renders a block based on color values.
+    """
     out = ""
     if val0 == " " and val1 == " ":
         out = " "
@@ -123,16 +92,42 @@ def blockrender(val0, val1):
             col0 = nul
             col1 = col(int(val1), 0)
             out = col0 + col1 + "▄"
-
     return out + nul
 
 
-for y in range(int(ylen / 2)):
-    line0 = img[y * 2]
-    line1 = img[y * 2 + 1]
-    for x in range(len(line0)):
-        output.append(str(blockrender(line0[x], line1[x])))
-    if y != ylen / 2:
-        output.append("\n")
+def cimage(passfile):
+    """
+    Creates an ANSI art image from a PNG file.
+    """
+    output = []
 
-save(str("".join(output)))
+    img = Image.open(passfile + ".png")
+    width, height = img.size
+    image = ""
+
+    for y in range(height):
+        for x in range(width):
+            image = image + str(colconv(img.getpixel((x, y))))
+        image = image + str("\n")
+
+    ylength = max(len(line) for line in image.split("\n"))
+
+    imagemod = [line.ljust(ylength) for line in image.split("\n")]
+    image = "\n".join(imagemod)
+
+    if not len(image.split("\n")) % 2 == 0:
+        wdth = len(image.split("\n")[0])
+        image = image + ("\n" + (" " * wdth))
+
+    img = image.split("\n")
+    ylen = len(img)
+
+    for y in range(int(ylen / 2)):
+        line0 = img[y * 2]
+        line1 = img[y * 2 + 1]
+        for x in range(len(line0)):
+            output.append(str(blockrender(line0[x], line1[x])))
+        if y != ylen / 2:
+            output.append("\n")
+
+    save(str("".join(output)))

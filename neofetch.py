@@ -1,7 +1,9 @@
 from os.path import expanduser
 import os
+from get_info import get_info
+from cimage import cimage
 
-exec(open("get_info.py").read())
+sysinfo = get_info()
 
 pref = {}
 pref_ = open(str(expanduser("~")) + "/.config/mfetch/options").read().split("\n")
@@ -42,7 +44,7 @@ try:
     open(str(passfile + ".png"))
 except:
     passfile = "logos/linux/" + logof
-exec(open("cimage.py").read())
+cimage(passfile)
 
 logo = str(open(str(expanduser("~")) + "/.cache/mfetch/currentlogo").read())
 colours = str(open("colour/colours").read().replace("\n", ""))
@@ -116,8 +118,10 @@ for i in logo.split("\n"):
         g = line[on]
     except:
         g = ""
-    # ^ This alowes spacing between elements also alowes the output to be shorter in length than the logo
-
+    """
+        ^ This alowes spacing between elements also alowes
+        the output to be shorter in length than the logo
+    """
     on += 1
     out.append(str(i) + " " * logo_padding + str(g))
 
