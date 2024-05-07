@@ -1,0 +1,5 @@
+__pycache__/
+.venv
+mfetch.egg-info
+build
+dist
