@@ -4,18 +4,20 @@ from mfetch.get_info import get_info
 from mfetch.cimage import cimage
 import click
 
+
 @click.command()
 def main():
     # Your neofetch.py code here
-
 
     sysinfo = get_info()
 
     pref = {}
     try:
-        pref_ = open(str(expanduser("~")) + "/.config/mfetch/options").read().split("\n")
+        pref_ = (
+            open(str(expanduser("~")) + "/.config/mfetch/options").read().split("\n")
+        )
     except:
-        pref_ = open(str('mfetch/options')).read().split('\n')
+        pref_ = open(str("mfetch/options")).read().split("\n")
 
     for pref_itm in pref_:
         try:
@@ -26,7 +28,6 @@ def main():
 
     colon_padding = int(pref["text_spacer_size"])
     logo_padding = int(pref["logo_padding"])
-
 
     if not pref["split_symbol"] == "null":
         split_symb = pref["split_symbol"]
@@ -60,14 +61,12 @@ def main():
 
     ##
 
-
     dat = {}
 
     try:
         dat_ = open("mfetch/logos/" + oslogo + "/dat").read().split("\n")
     except:
         dat_ = open("mfetch/logos/linux/dat").read().split("\n")
-
 
     for pref_itm in dat_:
         try:
@@ -80,9 +79,7 @@ def main():
     terminator = "\\e[0m"
     bold = "\\e[1m"
 
-
     split = ":" + " " * colon_padding
-
 
     def render_info(title, item):
         title = str(title)
@@ -100,7 +97,6 @@ def main():
         ]
 
         return str("".join(out))
-
 
     maximum_title_size = 6
     line = [
@@ -138,5 +134,6 @@ def main():
 
     pass
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
