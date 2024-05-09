@@ -2,7 +2,9 @@
 
 Minimal fetch is a more aesthetically pleasing system fetching tool written in Python!
 
-## What it actually looks like
+Please note this has had some major performance issues as of the latest update, I am working on fixing them
+
+## What it looks like
 <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-04-30_21-08.png" align="center" width="600px"/>
  
 <details>
