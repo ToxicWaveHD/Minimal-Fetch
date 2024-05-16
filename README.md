@@ -42,13 +42,13 @@ And simply run with
 ```
 $ mfetch
 ```
-Note: this requires the dependencies: `python3`, `pillow` and `wmctrl`
+Note: this requires the dependencies: `python3`, `pillow`, `click` and `wmctrl`
 
 You can install the dependencies with
 
-For Ubuntu/Debian-based: ```$ sudo apt install python3 python3-pillow wmctrl```
+For Ubuntu/Debian-based: ```$ sudo apt install python3 python3-pillow wmctrl python-click```
 
-For Arch-based: ```$ sudo pacman -S python3 python-pillow wmctrl```
+For Arch-based: ```$ sudo pacman -S python3 python-pillow wmctrl python-click```
 
 
 ## Config howto
