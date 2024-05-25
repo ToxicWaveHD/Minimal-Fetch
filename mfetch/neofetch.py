@@ -4,14 +4,18 @@ from mfetch.get_info import get_info
 from mfetch.cimage import cimage
 import click
 from mfetch.get_info import run_command
+from mfetch.get_info import run_command
+from mfetch.get_info import get_info
 
 
 @click.command()
 def main():
     # Your neofetch.py code here
+
     path = run_command("pip show mfetch | grep Location").split(": ")[1]
 
     sysinfo = get_info()
+
 
     pref = {}
     try:
@@ -32,7 +36,7 @@ def main():
     logo_padding = int(pref["logo_padding"])
 
     if not pref["split_symbol"] == "null":
-        split_symb = pref["split_symbol"]
+        split_symb = "\\e[2m" + pref["split_symbol"] + "\\e[0m"
     else:
         split_symb = " "
 
@@ -100,21 +104,23 @@ def main():
 
         return str("".join(out))
 
-    maximum_title_size = 6
+    maximum_title_size = 9
+
     line = [
         "",
-        render_info("OS", sysinfo["os"]),
-        render_info("WM", sysinfo["wm"]),
+        render_info("  OS", sysinfo["os"]),
+        render_info("  WM", sysinfo["wm"]),
         "",
-        render_info("Kernel", sysinfo["kernel"]),
-        render_info("Pkgs", sysinfo["packages"]),
+        render_info("  Kernel", sysinfo["kernel"]),
+        render_info("  Pkgs", sysinfo["packages"]),
         "",
-        render_info("CPU", sysinfo["cpu"]),
-        render_info("GPU", sysinfo["gpu"]),
-        render_info("Memory", sysinfo["memory"]),
+        render_info("  CPU", sysinfo["cpu"]),
+        render_info("  GPU", sysinfo["gpu"]),
+        render_info("  Memory", sysinfo["memory"]),
         "",
         colours,
     ]
+
 
     out = []
     on = 0

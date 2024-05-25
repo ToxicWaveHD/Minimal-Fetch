@@ -20,18 +20,37 @@ def verify(package):
     output = run_command(f"whereis {package}")
     return output.split(": ")[1] if output else False
 
+#def verify(package):
+#    """
+#    Verifies if a package is installed on the system.
+#    """
+#    try:
+#      open("/bin/" + package)
+#      output = True
+#    except:
+#      output = False
+#    
+#
+#    return output
+
 
 def find_gpu():
     """
     Finds the GPU information.
     """
-    output = run_command("lspci -v")
-    gpu_info = output.split("00:02.0 VGA compatible controller: ")[1].split(" (")[0]
-    return (
-        gpu_info.replace("Intel Corporation ", "")
-        .replace(" Integrated Graphics Controller", "")
-        .replace("Core Processor ", "")
-    )
+    if verify("lspci"):
+        try:
+            output = run_command("lspci -v")
+            gpu_info = output.split("00:02.0 VGA compatible controller: ")[1].split(" (")[0]
+            return (
+                gpu_info.replace("Intel Corporation ", "")
+                .replace(" Integrated Graphics Controller", "")
+                .replace("Core Processor ", "")
+            )
+        except:
+            return "None found"
+    else:
+        return "NEEDS DEPENDENCY 'lspci'"
 
 
 def find_os():
@@ -48,47 +67,52 @@ def find_os():
 
 # find the CPU
 def find_cpu():
-    cpu = open("/proc/cpuinfo").read().split("\n")[4]
-    cpu = cpu.split(": ")[1]
+    try:
+        cpu = open("/proc/cpuinfo").read().split("\n")[4]
+        cpu = cpu.split(": ")[1]
 
-    fancy_cpu = cpu.split(" CPU")[0]  # remove the "cpu @ 0.00hz" part
+        fancy_cpu = cpu.split(" CPU")[0]  # remove the "cpu @ 0.00hz" part
 
-    # some customizations to make the intel i series look cleaner after all this is minimal fetch
-    if fancy_cpu.split(" ")[0] == "Intel(R)":
-        fancy_cpu = fancy_cpu.split("Intel(R) Core(TM) ")[
-            1
-        ]  # removes the branding part that nobody cares about
+        # some customizations to make the intel i series look cleaner after all this is minimal fetch
+        if fancy_cpu.split(" ")[0] == "Intel(R)":
+            fancy_cpu = fancy_cpu.split("Intel(R) Core(TM) ")[1]  # removes the branding part that nobody cares about
 
-    return fancy_cpu  # you can change "fancy_cpu" to "cpu" to avoid breakages and show full default cpu info
+        return fancy_cpu  # you can change "fancy_cpu" to "cpu" to avoid breakages and show full default cpu info
+    except: return "cpu not found"
 
 
 # Find the WM name
 def find_wm():
-    wm = run_command("wmctrl -m").split("\n")[0]
-    wm = wm.split(": ")[1]
+    try:
+        wm = run_command("echo $XDG_CURRENT_DESKTOP")
+        if wm == "":
+            try:
+                wm = run_command("wmctrl -m")
+                wm = wm.split("Name: ")[1]
+                wm = wm.split("\n")[0]
+            except: wm = "Unknown"
+    except: wm = "Unknown"
     return wm
 
 
 def find_kern():
-    kern = run_command("uname -r").split("\n")[
-        0
-    ]  # the .split part removes the newline at the end
+    kern = run_command("uname -r").split("\n")[0]  # the .split part removes the newline at the end
     return kern
 
 
 def find_memory():
     mem = run_command("free -m").split("\n")[1]
     total_mem = int(
-        int(mem.split()[1]) / 100
+        int(mem.split()[1]) / 10
     )  #  The double int is used to serve as a truncate
     used_mem = int(
-        int(mem.split()[2]) / 100
+        int(mem.split()[2]) / 10
     )  #   The double int is used to serve as a truncate
 
-    total_mem = total_mem / 10  #  this makes it gigabytes rather than megabytes
-    used_mem = used_mem / 10  #   this makes it gigabytes rather than megabytes
+    total_mem = total_mem / 100  #  this makes it gigabytes rather than megabytes
+    used_mem = used_mem / 100  #   this makes it gigabytes rather than megabytes
 
-    ret = str(str(used_mem) + " / " + str(total_mem))
+    ret = str(str(used_mem) + "\\e[2m / \\e[0m" + str(total_mem))
     ret = ret + " GB"  # Simple indicator
     return ret
 
@@ -112,6 +136,15 @@ def find_packages():
 
             if flatpak_amount > 0:
                 packages.append(str("flatpak " + str(flatpak_amount)))
+
+    except:
+        False
+    try:
+        if verify("pip"):
+            pip_amount = len(run_command("pip list").split("\n")) - 1
+
+            if pip_amount > 0:
+                packages.append(str("pip " + str(pip_amount)))
 
     except:
         False
@@ -144,19 +177,22 @@ def find_packages():
     """
     
     LOOKING TO COMMIT SOME CODE?
-    Add your distros pakcage manager with
+    Add your distros package manager with
     
     try:
-     if verify(" <package manager command> "):
-       pak_amount = len(run_command(" <package manager list installed command> ").split("\n"))-1
-    
-       if pak_amount > 0:
-         packages.append(str("<package manger name> " + str(pak_amount)))
-    except: False
+        if verify("<package manager>"):
+            pak_amount = len(run_command("<list command>").split("\n")) - 1
 
-    return " & ".join(packages)
+            if pak_amount > 0:
+                packages.append(str("<name> " + str(pak_amount)))
+    except:
+        False
 
     """
+
+    #print(packages)
+
+    return str("\\e[2m & \\e[0m".join(packages))
 
 
 def get_info():
@@ -173,3 +209,6 @@ def get_info():
         "gpu": find_gpu(),
     }
     return sysinfo
+
+
+get_info()
