@@ -1,4 +1,4 @@
-# Minimal-Fetch Version 2.0 BETA
+# Minimal-Fetch Version 2.1 BETA
 
 Minimal fetch is a more aesthetically pleasing system fetching tool written in Python!
 
@@ -42,7 +42,7 @@ And simply run with
 ```
 $ mfetch
 ```
-Note: this requires the dependencies: `python3`, `pillow`, `click` and `wmctrl`
+Note: this requires the dependencies: `python3`, `pillow`, `click`
 
 You can install the dependencies with
 
@@ -56,8 +56,7 @@ WARNING FAIL-SAFES HAVE YET TO BE ADDED IF YOU ENCOUNTER ANY ERRORS WHILE RUNNIN
 
 The config is located at ```~/.config/mfetch/options```
 
-True/False statements MUST be capitalised
-
-The os logo has to be a directory in ```/usr/share/mfetch/logos```
+If it is not run `pip show mfetch` and copy the `location` then
+copy `<for mentioned location>/mfetch/options` to `~/.config/mfetch`
 
 Any improvements, features or new logos would be very welcome :)
