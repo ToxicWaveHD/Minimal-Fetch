@@ -108,15 +108,15 @@ def main():
 
     line = [
         "",
-        render_info("  OS", sysinfo["os"]),
-        render_info("  WM", sysinfo["wm"]),
+        render_info("OS", sysinfo["os"]),
+        render_info("WM", sysinfo["wm"]),
         "",
-        render_info("  Kernel", sysinfo["kernel"]),
-        render_info("  Pkgs", sysinfo["packages"]),
+        render_info("Kernel", sysinfo["kernel"]),
+        render_info("Pkgs", sysinfo["packages"]),
         "",
-        render_info("  CPU", sysinfo["cpu"]),
-        render_info("  GPU", sysinfo["gpu"]),
-        render_info("  Memory", sysinfo["memory"]),
+        render_info("CPU", sysinfo["cpu"]),
+        render_info("GPU", sysinfo["gpu"]),
+        render_info("Memory", sysinfo["memory"]),
         "",
         colours,
     ]
