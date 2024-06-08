@@ -46,9 +46,9 @@ Note: this requires the dependencies: `python3`, `pillow`, `click`
 
 You can install the dependencies with
 
-For Ubuntu/Debian-based: ```$ sudo apt install python3 python3-pillow python-click```
+For Ubuntu/Debian-based: ```sudo apt install python3 python3-pillow python-click```
 
-For Arch-based: ```$ sudo pacman -S python3 python-pillow python-click```
+For Arch-based: ```sudo pacman -S python3 python-pillow python-click```
 
 
 ## Config howto
