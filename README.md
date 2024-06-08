@@ -36,11 +36,11 @@ STILL A WIP DO NOT EXPECT IT TO BE FLAWLESS  (Please do report any issues you fi
 
 ## Install with
 ```
-$ sudo pip install git+https://github.com/ToxicWaveHD/Minimal-fetch
+sudo pip install git+https://github.com/ToxicWaveHD/Minimal-fetch
 ```
 And simply run with
 ```
-$ mfetch
+mfetch
 ```
 Note: this requires the dependencies: `python3`, `pillow`, `click`
 
