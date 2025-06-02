@@ -1,135 +1,119 @@
 import os
 from PIL import Image
 
-ech = 'echo -e "'
-end = '\\e[0m"'
-nul = "\\e[0m"
+ECH = 'echo -e "'
+END = '\\e[0m"'
+NUL = "\\e[0m"
 
-cols = [
-    "\\e[30m",
-    "\\e[40m",
-    "\\e[31m",
-    "\\e[41m",
-    "\\e[32m",
-    "\\e[42m",
-    "\\e[33m",
-    "\\e[43m",
-    "\\e[34m",
-    "\\e[44m",
-    "\\e[35m",
-    "\\e[45m",
-    "\\e[36m",
-    "\\e[46m",
-    "\\e[37m",
-    "\\e[47m",
+# ANSI color codes: index pairs correspond to foreground and background color codes
+COLS = [
+    "\\e[30m", "\\e[40m",  # black fg/bg
+    "\\e[31m", "\\e[41m",  # red
+    "\\e[32m", "\\e[42m",  # green
+    "\\e[33m", "\\e[43m",  # yellow
+    "\\e[34m", "\\e[44m",  # blue
+    "\\e[35m", "\\e[45m",  # magenta
+    "\\e[36m", "\\e[46m",  # cyan
+    "\\e[37m", "\\e[47m",  # white
 ]
 
 
-def save(inputt):
+def save(content):
     """
-    Saves input to a file.
+    Saves content string to ~/.cache/mfetch/currentlogo, creating directories if needed.
     """
     directory = os.path.expanduser("~/.cache/mfetch/")
-    os.makedirs(directory, exist_ok=True)  # Create directory if it doesn't exist
-    filee = os.path.join(directory, "currentlogo")
-    with open(filee, "w") as fp:
-        fp.write(str(inputt))
+    os.makedirs(directory, exist_ok=True)
+    filepath = os.path.join(directory, "currentlogo")
+    with open(filepath, "w") as f:
+        f.write(str(content))
 
 
-def colconv(col):
+def colconv(rgba):
     """
-    Converts RGBA color to ANSI color code.
+    Convert an RGBA tuple to a simplified ANSI color index (0-7) or ' ' for transparent.
+    Uses a bitmask approach for red, green, blue channels presence.
     """
-    r, g, b, a = col
-    r = int((r / 255) + 0.5) != 0
-    g = int((g / 255) + 0.5) != 0
-    b = int((b / 255) + 0.5) != 0
-    a = int((a / 255) + 0.5) != 0
-
-    if a:
-        if r & g & b:
-            return "7"
-        if g & b:
-            return "6"
-        if r & b:
-            return "5"
-        if r & g:
-            return "3"
-        if r:
-            return "1"
-        if g:
-            return "2"
-        if b:
-            return "4"
-        else:
-            return "0"
-    else:
+    r, g, b, a = rgba
+    if a < 128:
         return " "
+    # Normalize to binary presence
+    r_bit = 1 if r > 127 else 0
+    g_bit = 1 if g > 127 else 0
+    b_bit = 1 if b > 127 else 0
+
+    # Compose color index according to bits (rough approximation)
+    if r_bit and g_bit and b_bit:
+        return "7"  # white
+    if g_bit and b_bit:
+        return "6"  # cyan
+    if r_bit and b_bit:
+        return "5"  # magenta
+    if r_bit and g_bit:
+        return "3"  # yellow
+    if r_bit:
+        return "1"  # red
+    if g_bit:
+        return "2"  # green
+    if b_bit:
+        return "4"  # blue
+    return "0"      # black
 
 
-def col(col, mod):
+def col(color_idx, mod):
     """
-    Returns ANSI color escape sequences.
+    Return ANSI escape sequence for color index with mod (0=fg,1=bg).
     """
-    return cols[col * 2 + mod]
+    idx = int(color_idx) * 2 + mod
+    return COLS[idx]
 
 
 def blockrender(val0, val1):
     """
-    Renders a block based on color values.
+    Render a combined block character based on two ANSI color codes.
+    Uses '▀' (upper half block) and '▄' (lower half block).
     """
-    out = ""
     if val0 == " " and val1 == " ":
-        out = " "
+        return " "
+    if val0 != " ":
+        col0 = col(val0, 0)
+        col1 = col(val1, 1) if val1 != " " else ""
+        return f"{col0}{col1}▀{NUL}"
     else:
-        if val0 != " ":
-            if val1 != " ":
-                col0 = col(int(val0), 0)
-                col1 = col(int(val1), 1)
-            else:
-                col0 = col(int(val0), 0)
-                col1 = ""
-            out = col0 + col1 + "▀"
-        else:
-            col0 = nul
-            col1 = col(int(val1), 0)
-            out = col0 + col1 + "▄"
-    return out + nul
+        col0 = NUL
+        col1 = col(val1, 0)
+        return f"{col0}{col1}▄{NUL}"
 
 
-def cimage(passfile):
+def cimage(filename):
     """
-    Creates an ANSI art image from a PNG file.
+    Convert a PNG image to ANSI art using half-block characters.
+    Saves output to ~/.cache/mfetch/currentlogo.
     """
-    output = []
-
-    img = Image.open(passfile + ".png")
+    img = Image.open(f"{filename}.png").convert("RGBA")
     width, height = img.size
-    image = ""
 
+    # Convert each pixel to ANSI color index string lines
+    lines = []
     for y in range(height):
-        for x in range(width):
-            image = image + str(colconv(img.getpixel((x, y))))
-        image = image + str("\n")
+        line = "".join(colconv(img.getpixel((x, y))) for x in range(width))
+        lines.append(line)
 
-    ylength = max(len(line) for line in image.split("\n"))
+    # Pad lines to equal length
+    max_len = max(len(line) for line in lines)
+    lines = [line.ljust(max_len) for line in lines]
 
-    imagemod = [line.ljust(ylength) for line in image.split("\n")]
-    image = "\n".join(imagemod)
+    # Make sure number of lines is even (for pairing rows)
+    if len(lines) % 2 != 0:
+        lines.append(" " * max_len)
 
-    if not len(image.split("\n")) % 2 == 0:
-        wdth = len(image.split("\n")[0])
-        image = image + ("\n" + (" " * wdth))
-
-    img = image.split("\n")
-    ylen = len(img)
-
-    for y in range(int(ylen / 2)):
-        line0 = img[y * 2]
-        line1 = img[y * 2 + 1]
-        for x in range(len(line0)):
-            output.append(str(blockrender(line0[x], line1[x])))
-        if y != ylen / 2:
+    output = []
+    for y in range(0, len(lines), 2):
+        line0 = lines[y]
+        line1 = lines[y + 1]
+        for x in range(max_len):
+            output.append(blockrender(line0[x], line1[x]))
+        if y + 2 < len(lines):
             output.append("\n")
 
-    save(str("".join(output)))
+    save("".join(output))
