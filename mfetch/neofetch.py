@@ -38,9 +38,17 @@ def main():
     # === Apply preferences ===
     colon_padding = int(pref.get("text_spacer_size", 2))
     logo_padding = int(pref.get("logo_padding", 1))
-    split_symb = f"\\e[2m{pref['split_symbol']}\\e[0m" if pref.get("split_symbol") != "null" else " "
+    split_symb = (
+        f"\\e[2m{pref['split_symbol']}\\e[0m"
+        if pref.get("split_symbol") != "null"
+        else " "
+    )
     big = pref.get("logo_big") == "True"
-    oslogo = pref["os_logo"] if pref.get("os_logo") != "null" else sysinfo["os"].lower().split(" ")[0]
+    oslogo = (
+        pref["os_logo"]
+        if pref.get("os_logo") != "null"
+        else sysinfo["os"].lower().split(" ")[0]
+    )
 
     # === Load logo and color ===
     logof = "logo-big" if big else "logo"
@@ -79,21 +87,22 @@ def main():
     bold = "\\e[1m"
     split = ":" + " " * colon_padding
 
-
     def render_info(title, item):
         title = str(title)
         item = str(item)
         padding = " " * (maximum_title_size - len(title))
-        return "".join([
-            bold,
-            logo_col,
-            title,
-            terminator,
-            split_symb,
-            " " * colon_padding,
-            padding,
-            item,
-        ])
+        return "".join(
+            [
+                bold,
+                logo_col,
+                title,
+                terminator,
+                split_symb,
+                " " * colon_padding,
+                padding,
+                item,
+            ]
+        )
 
     maximum_title_size = 9
 
@@ -121,8 +130,6 @@ def main():
     line += [render_info(k, v) for k, v in info_keys[2:]]
     line.append("")
     line.append(colours)
-
-
 
     out = []
     on = 0

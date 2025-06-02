@@ -19,9 +19,9 @@ def verify(package):
     Verifies if a package is installed on the system.
     """
     return shutil.which(package) is not None
-    
 
-#def verify(package):
+
+# def verify(package):
 #    """
 #    Verifies if a package is installed on the system.
 #    """
@@ -30,22 +30,27 @@ def verify(package):
 #      output = True
 #    except:
 #      output = False
-#    
+#
 #
 #    return output
+
 
 def is_wsl():
     """
     Checks if the script is running in a WSL environment.
     """
-    return "microsoft-standard" in run_command("uname -r").lower() or "wsl" in run_command("uname -r").lower()
+    return (
+        "microsoft-standard" in run_command("uname -r").lower()
+        or "wsl" in run_command("uname -r").lower()
+    )
+
 
 def find_gpu():
     """
     Finds the GPU information.
     """
     if is_wsl():
-        try:    
+        try:
             command = 'powershell.exe "Get-CimInstance Win32_VideoController | Select-Object -ExpandProperty Name"'
             output = run_command(command)
             if output:
@@ -57,7 +62,9 @@ def find_gpu():
     if verify("lspci"):
         try:
             output = run_command("lspci -v")
-            gpu_info = output.split("00:02.0 VGA compatible controller: ")[1].split(" (")[0]
+            gpu_info = output.split("00:02.0 VGA compatible controller: ")[1].split(
+                " ("
+            )[0]
             return (
                 gpu_info.replace("Intel Corporation ", "")
                 .replace(" Integrated Graphics Controller", "")
@@ -79,7 +86,6 @@ def find_os():
         return "Unknown"
 
 
-
 # find the CPU
 def find_cpu():
     try:
@@ -90,10 +96,13 @@ def find_cpu():
 
         # some customizations to make the intel i series look cleaner after all this is minimal fetch
         if fancy_cpu.split(" ")[0] == "Intel(R)":
-            fancy_cpu = fancy_cpu.split("Intel(R) Core(TM) ")[1]  # removes the branding part that nobody cares about
+            fancy_cpu = fancy_cpu.split("Intel(R) Core(TM) ")[
+                1
+            ]  # removes the branding part that nobody cares about
 
         return fancy_cpu  # you can change "fancy_cpu" to "cpu" to avoid breakages and show full default cpu info
-    except: return "cpu not found"
+    except:
+        return "cpu not found"
 
 
 # Find the WM name
@@ -106,13 +115,17 @@ def find_wm():
                     wm = run_command("wmctrl -m")
                     wm = wm.split("Name: ")[1]
                     wm = wm.split("\n")[0]
-            except: wm = "Unknown"
-    except: wm = "Unknown"
+            except:
+                wm = "Unknown"
+    except:
+        wm = "Unknown"
     return wm
 
 
 def find_kern():
-    kern = run_command("uname -r").split("\n")[0]  # the .split part removes the newline at the end
+    kern = run_command("uname -r").split("\n")[
+        0
+    ]  # the .split part removes the newline at the end
     return kern
 
 
@@ -142,7 +155,7 @@ def find_packages():
         ("pip", "pip list"),
         ("dpkg", "dpkg-query -l"),
         ("rpm", "rpm -qa"),
-        ("apk", "apk list --installed")
+        ("apk", "apk list --installed"),
     ]
 
     for name, command in managers:
@@ -168,7 +181,7 @@ def get_info():
     if len(gpu) > 1:
         gpu_1 = gpu[0]
         gpu_2 = gpu[1]
-        
+
     sysinfo = {
         "wm": find_wm(),
         "os": find_os(),
@@ -180,4 +193,6 @@ def get_info():
         "gpu2": gpu_2 if gpu_2 else None,
     }
     return sysinfo
+
+
 get_info()

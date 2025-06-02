@@ -7,14 +7,22 @@ NUL = "\\e[0m"
 
 # ANSI color codes: index pairs correspond to foreground and background color codes
 COLS = [
-    "\\e[30m", "\\e[40m",  # black fg/bg
-    "\\e[31m", "\\e[41m",  # red
-    "\\e[32m", "\\e[42m",  # green
-    "\\e[33m", "\\e[43m",  # yellow
-    "\\e[34m", "\\e[44m",  # blue
-    "\\e[35m", "\\e[45m",  # magenta
-    "\\e[36m", "\\e[46m",  # cyan
-    "\\e[37m", "\\e[47m",  # white
+    "\\e[30m",
+    "\\e[40m",  # black fg/bg
+    "\\e[31m",
+    "\\e[41m",  # red
+    "\\e[32m",
+    "\\e[42m",  # green
+    "\\e[33m",
+    "\\e[43m",  # yellow
+    "\\e[34m",
+    "\\e[44m",  # blue
+    "\\e[35m",
+    "\\e[45m",  # magenta
+    "\\e[36m",
+    "\\e[46m",  # cyan
+    "\\e[37m",
+    "\\e[47m",  # white
 ]
 
 
@@ -57,7 +65,7 @@ def colconv(rgba):
         return "2"  # green
     if b_bit:
         return "4"  # blue
-    return "0"      # black
+    return "0"  # black
 
 
 def col(color_idx, mod):
