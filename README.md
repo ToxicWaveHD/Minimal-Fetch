@@ -4,7 +4,7 @@ Minimal fetch is a more aesthetically pleasing system fetching tool written in P
 
 Please note this has had some major performance issues as of the latest update, I am working on fixing them
 
-**WARNING This repo ins't actively being worked on anymore.**
+**WARNING This repo isn't actively being worked on anymore.**
 
 ## What it looks like
 <img src="https://github.com/ToxicWaveHD/Minimal-Fetch/blob/main/prev/2024-05-09_11-01.png" align="center" width="600px"/>
