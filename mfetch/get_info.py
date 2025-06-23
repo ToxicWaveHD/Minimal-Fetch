@@ -1,5 +1,6 @@
-import os
+import re
 import subprocess
+import shutil
 
 
 def run_command(command):
@@ -17,10 +18,10 @@ def verify(package):
     """
     Verifies if a package is installed on the system.
     """
-    output = run_command(f"whereis {package}")
-    return output.split(": ")[1] if output else False
+    return shutil.which(package) is not None
 
-#def verify(package):
+
+# def verify(package):
 #    """
 #    Verifies if a package is installed on the system.
 #    """
@@ -29,19 +30,41 @@ def verify(package):
 #      output = True
 #    except:
 #      output = False
-#    
+#
 #
 #    return output
+
+
+def is_wsl():
+    """
+    Checks if the script is running in a WSL environment.
+    """
+    return (
+        "microsoft-standard" in run_command("uname -r").lower()
+        or "wsl" in run_command("uname -r").lower()
+    )
 
 
 def find_gpu():
     """
     Finds the GPU information.
     """
+    if is_wsl():
+        try:
+            command = 'powershell.exe "Get-CimInstance Win32_VideoController | Select-Object -ExpandProperty Name"'
+            output = run_command(command)
+            if output:
+                return output.split("\n")
+            else:
+                return "None found in WSL"
+        except:
+            return "None found in WSL"
     if verify("lspci"):
         try:
             output = run_command("lspci -v")
-            gpu_info = output.split("00:02.0 VGA compatible controller: ")[1].split(" (")[0]
+            gpu_info = output.split("00:02.0 VGA compatible controller: ")[1].split(
+                " ("
+            )[0]
             return (
                 gpu_info.replace("Intel Corporation ", "")
                 .replace(" Integrated Graphics Controller", "")
@@ -54,15 +77,13 @@ def find_gpu():
 
 
 def find_os():
-    """
-    Finds the operating system information.
-    """
     try:
         with open("/etc/os-release") as file:
-            os_info = file.read().split('PRETTY_NAME="')[1].split('"')[0]
+            content = file.read()
+            match = re.search(r'PRETTY_NAME="([^"]+)"', content)
+            return match.group(1) if match else "Unknown"
     except FileNotFoundError:
-        os_info = "Unknown"
-    return os_info
+        return "Unknown"
 
 
 # find the CPU
@@ -75,10 +96,13 @@ def find_cpu():
 
         # some customizations to make the intel i series look cleaner after all this is minimal fetch
         if fancy_cpu.split(" ")[0] == "Intel(R)":
-            fancy_cpu = fancy_cpu.split("Intel(R) Core(TM) ")[1]  # removes the branding part that nobody cares about
+            fancy_cpu = fancy_cpu.split("Intel(R) Core(TM) ")[
+                1
+            ]  # removes the branding part that nobody cares about
 
         return fancy_cpu  # you can change "fancy_cpu" to "cpu" to avoid breakages and show full default cpu info
-    except: return "cpu not found"
+    except:
+        return "cpu not found"
 
 
 # Find the WM name
@@ -87,16 +111,21 @@ def find_wm():
         wm = run_command("echo $XDG_CURRENT_DESKTOP")
         if wm == "":
             try:
-                wm = run_command("wmctrl -m")
-                wm = wm.split("Name: ")[1]
-                wm = wm.split("\n")[0]
-            except: wm = "Unknown"
-    except: wm = "Unknown"
+                if verify("wmctrl"):
+                    wm = run_command("wmctrl -m")
+                    wm = wm.split("Name: ")[1]
+                    wm = wm.split("\n")[0]
+            except:
+                wm = "Unknown"
+    except:
+        wm = "Unknown"
     return wm
 
 
 def find_kern():
-    kern = run_command("uname -r").split("\n")[0]  # the .split part removes the newline at the end
+    kern = run_command("uname -r").split("\n")[
+        0
+    ]  # the .split part removes the newline at the end
     return kern
 
 
@@ -118,87 +147,41 @@ def find_memory():
 
 
 def find_packages():
-
     packages = []
 
-    try:
-        if verify("pacman"):
-            pacman_amount = len(run_command("pacman -Q").split("\n")) - 1
+    managers = [
+        ("pacman", "pacman -Q"),
+        ("flatpak", "flatpak list"),
+        ("pip", "pip list"),
+        ("dpkg", "dpkg-query -l"),
+        ("rpm", "rpm -qa"),
+        ("apk", "apk list --installed"),
+    ]
 
-            if pacman_amount > 0:
-                packages.append(str("pacman " + str(pacman_amount)))
-    except:
-        False
+    for name, command in managers:
+        if verify(name):
+            try:
+                output = run_command(command)
+                count = len([line for line in output.splitlines() if line.strip()])
+                if count > 0:
+                    packages.append(f"{name} {count}")
+            except:
+                continue
 
-    try:
-        if verify("flatpak"):
-            flatpak_amount = len(run_command("flatpak list").split("\n")) - 1
-
-            if flatpak_amount > 0:
-                packages.append(str("flatpak " + str(flatpak_amount)))
-
-    except:
-        False
-    try:
-        if verify("pip"):
-            pip_amount = len(run_command("pip list").split("\n")) - 1
-
-            if pip_amount > 0:
-                packages.append(str("pip " + str(pip_amount)))
-
-    except:
-        False
-    try:
-        if verify("dpkg"):
-            dpkg_amount = len(run_command("dpkg-query -l").split("\n")) - 1
-
-            if dpkg_amount > 0:
-                packages.append(str("dpkg " + str(dpkg_amount)))
-    except:
-        False
-
-    try:
-        if verify("rpm"):
-            rpm_amount = len(run_command("rpm -qa").split("\n")) - 1
-
-            if rpm_amount > 0:
-                packages.append(str("rpm " + str(rpm_amount)))
-    except:
-        False
-
-    try:
-        if verify("apk"):
-            apk_amount = len(run_command("apk list --installed").split("\n")) - 1
-
-            if apk_amount > 0:
-                packages.append(str("apk " + str(apk_amount)))
-    except:
-        False
-    """
-    
-    LOOKING TO COMMIT SOME CODE?
-    Add your distros package manager with
-    
-    try:
-        if verify("<package manager>"):
-            pak_amount = len(run_command("<list command>").split("\n")) - 1
-
-            if pak_amount > 0:
-                packages.append(str("<name> " + str(pak_amount)))
-    except:
-        False
-
-    """
-
-    #print(packages)
-
-    return str("\\e[2m & \\e[0m".join(packages))
+    return " \033[2m&\033[0m ".join(packages)
 
 
 def get_info():
     """
     Retrieves system information and returns it as a dictionary.
     """
+    gpu_1 = None
+    gpu_2 = None
+    gpu = find_gpu()
+    if len(gpu) > 1:
+        gpu_1 = gpu[0]
+        gpu_2 = gpu[1]
+
     sysinfo = {
         "wm": find_wm(),
         "os": find_os(),
@@ -206,7 +189,8 @@ def get_info():
         "memory": find_memory(),
         "kernel": find_kern(),
         "packages": find_packages(),
-        "gpu": find_gpu(),
+        "gpu": gpu_1 if gpu_1 else "None",
+        "gpu2": gpu_2 if gpu_2 else None,
     }
     return sysinfo
 
